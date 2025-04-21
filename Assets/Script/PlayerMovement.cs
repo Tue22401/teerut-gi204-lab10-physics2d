@@ -4,6 +4,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
      private Rigidbody2D rb2d;
 
+     Vector2 moveInput;
+
      float move;
      [SerializeField] float speed;
 
@@ -21,9 +23,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     
     void Update()
     {
-        move = Input.GetAxis("Horizontal");
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+        rb2d.AddForce (moveInput * speed);
+        //move = Input.GetAxis("Horizontal");
 
-        rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);
+        //rb2d.linearVelocity = new Vector2(move * speed, rb2d.linearVelocity.y);
 
 
         // Jump
